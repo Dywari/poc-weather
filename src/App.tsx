@@ -3,8 +3,6 @@ import './App.css';
 import {MainLayout} from "./view/MainLayout";
 import OverlayWaitingPermission from "./utils/OverlayWaitingPermission";
 import {QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import GetWeather from "./services/WeatherService";
-
 
 const queryClient = new QueryClient();
 
@@ -13,7 +11,7 @@ function App() {
     const [displayOverlayPermission, setDisplayOverlayPermission] = useState(true);
 
 
-    // useEffect(() => {
+    useEffect(() => {
         if ("geolocation" in navigator) {
             const options = {
                 enableHighAccuracy: true,
@@ -23,7 +21,6 @@ function App() {
             navigator.geolocation.getCurrentPosition(
                 () => {
                     setDisplayOverlayPermission(false);
-                    // GetGeolocation();
                 },
                 (err) => {
                     console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -32,7 +29,7 @@ function App() {
             );
         }
 
-    // }, []);
+    }, []);
     return (
         <>
             <header>

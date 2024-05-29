@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
 import axios from 'axios';
 import ClientEnv from "../client-env";
-import {useQuery} from "@tanstack/react-query";
+import {skipToken, useQuery} from "@tanstack/react-query";
 import {Subject} from "rxjs";
 import {WeatherFull} from "../entities/WeatherFull";
+let currentLatitude = 0;
+let currentLongitude = 0;
 
 export class WeatherService {
     private static instance: WeatherService;
@@ -31,23 +32,37 @@ export class WeatherService {
                     units: 'metric',
                 }
             });
-         // data = WeatherFull.fromJson(data)
          return  data;
-        //     .then((response) => {
-        //         const weather =;
-        //         console.log(weather);
-        //         // this.weatherSubject.next(weather);
-        //         return weather;
-        //     })
-        // return weather;
-
     }
 
 }
-const GetWeather = (latitude: number, longitude: number) => {
-    return useQuery({
-        queryKey: ['weather', latitude, longitude],
-        queryFn: () => WeatherService.getInstance().fetchWeather(latitude, longitude)
-});
+export const needUpdateLocationAPi = (latitude: number, longitude: number): boolean => {
+    const updateCurrentPosition = () => {
+        currentLongitude = longitude;
+        currentLatitude = latitude;
+    }
+    if (currentLongitude === 0 && currentLatitude === 0) {
+        updateCurrentPosition();
+        return true;
+    } else {
+        // We don't need to refresh location if the geolocation has not changed within 3 km
+        if (Math.abs(currentLatitude - latitude) > 0.03 || Math.abs(currentLongitude - longitude) > 0.03) {
+            updateCurrentPosition();
+            return true;
+        } else {
+            return false
+        }
+    }
+}
+const useWeather = (pos: { lat: number, lon: number } | null) => {
+            return useQuery({
+                queryKey: ['weather', pos?.lat, pos?.lon],
+                queryFn: pos ? () => WeatherService.getInstance().fetchWeather(pos.lat, pos.lon) : skipToken,
+            });
+
 };
-export default GetWeather;
+
+
+
+
+export default useWeather;
