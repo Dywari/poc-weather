@@ -5,7 +5,7 @@ export function getUrlForIcon(code: string) {
 }
 
 interface IconDisplayProps {
-    iconCode: string;
+    iconCode: string | null;
     size?: number;
 }
 
@@ -16,11 +16,13 @@ class IconDisplay extends Component<IconDisplayProps> {
     };
     render() {
         const {iconCode, size} = this.props;
-        const iconUrl = getUrlForIcon(iconCode);
+        if (iconCode) {
+            const iconUrl = getUrlForIcon(iconCode);
+            return (
+                <object data={iconUrl}  width={size} height={size}/>
+            );
+        }
 
-        return (
-            <img src={iconUrl} alt={`Icon for ${iconCode}`} width={size} height={size}/>
-        );
     }
 }
 

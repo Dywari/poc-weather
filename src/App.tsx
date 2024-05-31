@@ -7,16 +7,13 @@ import {QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 function App() {
-
     const [displayOverlayPermission, setDisplayOverlayPermission] = useState(true);
-
 
     useEffect(() => {
         if ("geolocation" in navigator) {
             const options = {
                 enableHighAccuracy: true,
-                timeout: 5000,
-                maximumAge: 0,
+                maximumAge: 10000,
             };
             navigator.geolocation.getCurrentPosition(
                 () => {
@@ -31,16 +28,10 @@ function App() {
 
     }, []);
     return (
-        <>
-            <header>
-            </header>
-            <body className="h-screen w-screen">
             <QueryClientProvider client={queryClient}>
                 {displayOverlayPermission && <OverlayWaitingPermission/>}
                 <MainLayout></MainLayout>
             </QueryClientProvider>
-            </body>
-        </>
     );
 
 

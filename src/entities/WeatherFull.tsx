@@ -102,7 +102,7 @@ export class WeatherFull {
     }
 
     get visibility(): number {
-        return this._visibility;
+        return this._visibility / 1000;
     }
 
     set visibility(value: number) {

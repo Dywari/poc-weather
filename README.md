@@ -1,46 +1,59 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This project aims to display the weather based on the user's geographical coordinates obtained from their browser. 
+Using the OpenWeatherMap API, the application retrieves weather data. 
+Given the limitations of the free version of OpenWeatherMap in terms of daily request limits, a caching system is implemented to reduce the number of requests. 
+The application's interface is designed to be responsive, ensuring usability on both PCs and smartphones. 
 
-## Available Scripts
+Additionally, the application includes a system that only refreshes the weather data if the device's location has changed by more than 3 kilometers compared to the previous location.
 
-In the project directory, you can run:
+# Installation
+Follow these steps to install the project:
 
+## Install the dependencies
+### `npm install`
+
+#Usage
+To start the application, use the following command:
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Once the application is running, it will automatically detect your location and display the current weather.
+The application is responsive and works seamlessly on both PCs and smartphones navigators with Geolocation API 
+(https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+##Dependencies
+Here is the list of dependencies used in this project:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- @emotion/react: ^11.11.4
+- @emotion/styled: ^11.11.5
+- @fontsource/roboto: ^5.0.13
+- @mui/icons-material: ^5.15.18
+- @mui/material: ^5.15.18
+- @react-rxjs/core: ^0.10.7
+- @react-rxjs/utils: ^0.9.7
+- @tanstack/react-query: ^5.40.0
+- @types/node: ^16.18.96
+- @types/react: ^18.3.0
+- @types/react-dom: ^18.3.0
+- axios: ^1.6.8
+- react-scripts: 5.0.1
+- rxjs: ^7.8.1
+- "tailwindcss": "^3.4.3"
+- typescript: ^4.9.5
 
-### `npm run build`
+##License
+This project is licensed under the MIT License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##Credits
+OpenWeatherMap API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+##FAQ
+Q: How does the caching system work?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A: The caching system stores the weather data in the browser's local storage to minimize the number of API requests. 
+Cached data is refreshed periodically to ensure accuracy (30min).
 
-### `npm run eject`
+Q: Can the application handle location changes?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+A: Yes, the application is designed to detect and handle changes in the device's location, updating the weather information accordingly. However, to avoid unnecessary updates, the weather data is only refreshed if the new location differs by more than 3 kilometers from the previous location.

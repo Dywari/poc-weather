@@ -17,7 +17,7 @@ export class MainDataWeather {
     }
 
     get temp(): number {
-        return this._temp;
+        return Math.trunc(this._temp);
     }
 
     set temp(value: number) {
@@ -25,7 +25,7 @@ export class MainDataWeather {
     }
 
     get feelsLike(): number {
-        return this._feelsLike;
+        return Math.trunc(this._feelsLike);
     }
 
     set feelsLike(value: number) {
@@ -33,7 +33,7 @@ export class MainDataWeather {
     }
 
     get tempMin(): number {
-        return this._tempMin;
+        return Math.trunc(this._tempMin);
     }
 
     set tempMin(value: number) {
@@ -41,7 +41,7 @@ export class MainDataWeather {
     }
 
     get tempMax(): number {
-        return this._tempMax;
+        return Math.trunc(this._tempMax);
     }
 
     set tempMax(value: number) {
