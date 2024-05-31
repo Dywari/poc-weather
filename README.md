@@ -23,6 +23,7 @@ The application is responsive and works seamlessly on both PCs and smartphones n
 
 
 ##Dependencies
+
 Here is the list of dependencies used in this project:
 
 - @emotion/react: ^11.11.4
@@ -43,12 +44,15 @@ Here is the list of dependencies used in this project:
 - typescript: ^4.9.5
 
 ##License
+
 This project is licensed under the MIT License
 
 ##Credits
+
 OpenWeatherMap API
 
 ##FAQ
+
 Q: How does the caching system work?
 
 A: The caching system stores the weather data in the browser's local storage to minimize the number of API requests. 
