@@ -40,7 +40,7 @@ Here is the list of dependencies used in this project:
 - axios: ^1.6.8
 - react-scripts: 5.0.1
 - rxjs: ^7.8.1
-- "tailwindcss": "^3.4.3"
+- tailwindcss: "^3.4.3"
 - typescript: ^4.9.5
 
 ##License
